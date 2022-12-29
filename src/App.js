@@ -1,23 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import Hero from './components/Hero';
+import Feature from './components/Feature';
+import Gallery from './components/Gallery';
+import Contact from './components/Contact';
+import MailingList from './components/MailingList';
+import Team from './components/Team';
+import Statistic from './components/Statistic';
+import Footer from './components/Footer';
+import Navbar from './components/Navbar';
+import { useState } from 'react';
 
 function App() {
+  const [isDarkMode, setIsDarkMode] = useState(() => false);
+  const toggleDarkMode = (checked) => {
+    setIsDarkMode(checked);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={`${isDarkMode ? 'dark' : 'light'}  `}>
+      <Navbar isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} toggleDarkMode={toggleDarkMode} />
+      <div className='w-full px-[10%] dark:bg-black'>
+        <Hero />
+        <Feature />
+        <Statistic />
+        <Gallery />
+        <Contact />
+        <MailingList />
+        <Team members={[{ name: 'John Doe' }, { name: 'Jane Doe' }]} />
+      </div>
+      <Footer />
     </div>
   );
 }
